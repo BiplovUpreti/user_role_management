@@ -1,0 +1,39 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50">
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    class="w-full max-w-sm p-6 bg-white rounded-lg shadow-md"
+  >
+    <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Login</h2>
+    <nz-form-item class="mb-4">
+      <nz-form-control nzErrorTip="Please input your username!">
+        <input
+          nz-input
+          formControlName="username"
+          placeholder="Username"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-6">
+      <nz-form-control nzErrorTip="Please input your password!">
+        <input
+          nz-input
+          type="password"
+          formControlName="password"
+          placeholder="Password"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <button
+      type="submit"
+      nz-button
+      nzType="primary"
+      [disabled]="loginForm.invalid"
+      class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition duration-200 disabled:opacity-y disabled:cursor-not-allowed"
+    >
+      Login
+    </button>
+  </form>
+</div>

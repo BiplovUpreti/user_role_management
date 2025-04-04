@@ -24,9 +24,12 @@
     "@ngrx/signals": "^19.1.0",
     "@ngrx/store": "^19.1.0",
     "@ngrx/store-devtools": "^19.1.0",
+    "@tailwindcss/postcss": "^4.1.2",
     "json-server": "^1.0.0-beta.3",
     "ng-zorro-antd": "^19.2.1",
+    "postcss": "^8.5.3",
     "rxjs": "~7.8.0",
+    "tailwindcss": "^4.1.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
   },

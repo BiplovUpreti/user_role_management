@@ -1,0 +1,23 @@
+<nz-layout class="min-h-screen">
+  <nz-sider class="bg-[#001529] min-h-screen">
+    <div
+      class="h-16 px-6 flex items-center text-white font-semibold border-b border-gray-800"
+    >
+      User Role Management
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" class="mt-2">
+      @for (item of sidebarRoutes; track item.path) {
+      <li nz-menu-item [routerLink]="item.path" class="flex items-center gap-2">
+        <span>{{ item.title }}</span>
+      </li>
+      }
+    </ul>
+  </nz-sider>
+  <nz-layout class="flex-grow">
+    <nz-content class="p-6">
+      <div class="bg-white rounded-lg shadow-sm p-6 min-h-[calc(100vh-96px)]">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
