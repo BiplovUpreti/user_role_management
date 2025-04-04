@@ -1,0 +1,18 @@
+{
+  "roles": [
+    {
+      "id": 1,
+      "name": "Super Admin",
+      "permissions": ["create", "edit", "delete", "view"]
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin123",
+      "fullName": "Super Admin",
+      "roleId": 1
+    }
+  ]
+}
