@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Role } from '../interfaces/role.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RoleService {
   private apiUrl = 'http://localhost:3000/roles';
@@ -15,23 +16,26 @@ export class RoleService {
     return this.http.get<any[]>(this.apiUrl);
   }
 
-  createRole(role: any): Observable<any> {
+  createRole(role: Role): Observable<any> {
     return this.http.post(this.apiUrl, role);
   }
 
-  updateRole(role: any): Observable<any> {
+  updateRole(role: Role): Observable<any> {
     return this.http.put(`${this.apiUrl}/${role.id}`, role);
   }
 
-  deleteRole(id: string): Observable<any> {
+  deleteRole(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
 
-  checkRoleNameExists(name: string, id?: string): Observable<boolean> {
+  checkRoleNameExists(name: string, id?: number): Observable<boolean> {
     return this.getRoles().pipe(
-      map(roles => roles.some(role => 
-        role.name.toLowerCase() === name.toLowerCase() && role.id !== id
-      ))
+      map((roles) =>
+        roles.some(
+          (role) =>
+            role.name.toLowerCase() === name.toLowerCase() && role.id !== id
+        )
+      )
     );
   }
 }

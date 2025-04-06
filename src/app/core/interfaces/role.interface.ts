@@ -1,5 +1,6 @@
 export interface Role {
-  id: string;
+  id: number;
   name: string;
+  userType: 'ADMIN' | 'NORMAL';
   permissions: string[];
 }

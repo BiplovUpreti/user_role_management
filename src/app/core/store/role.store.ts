@@ -59,9 +59,9 @@ export class RoleStore extends signalStore(
           switchMap((role) => {
             const newId =
               store.roles().length > 0
-                ? Math.max(...store.roles().map((r) => parseInt(r.id))) + 1
+                ? Math.max(...store.roles().map((r) => r.id)) + 1
                 : 1;
-            const newRole = { ...role, id: newId.toString() };
+            const newRole: Role = { ...role, id: newId, userType: 'NORMAL' };
 
             return roleService.createRole(newRole).pipe(
               tapResponse({
@@ -107,7 +107,7 @@ export class RoleStore extends signalStore(
         )
       ),
 
-      deleteRole: rxMethod<string>(
+      deleteRole: rxMethod<number>(
         pipe(
           tap(() => patchState(store, { loading: true, error: null })),
           switchMap((id) =>
@@ -130,7 +130,7 @@ export class RoleStore extends signalStore(
         )
       ),
 
-      checkRoleNameExists: rxMethod<{ name: string; id?: string }>(
+      checkRoleNameExists: rxMethod<{ name: string; id?: number }>(
         pipe(
           switchMap(({ name, id }) =>
             roleService.checkRoleNameExists(name, id).pipe(

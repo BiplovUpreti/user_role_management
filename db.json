@@ -1,19 +1,29 @@
 {
   "roles": [
     {
-      "id": "1",
+      "id": 1,
       "name": "Super Admin",
+      "userType": "ADMIN",
       "permissions": [
         "CREATE",
         "UPDATE",
         "DELETE",
         "READ"
       ]
+    },
+    {
+      "id": 2,
+      "name": "EMP",
+      "permissions": [
+        "CREATE",
+        "READ"
+      ],
+      "userType": "NORMAL"
     }
   ],
   "users": [
     {
-      "id": "1",
+      "id": 1,
       "username": "admin",
       "password": "admin123",
       "fullName": "Super Admin",

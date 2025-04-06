@@ -15,13 +15,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let role of roleTable.data">
+      @for (role of roleTable.data; track role.id) {
+      <tr>
         <td>{{ role.name }}</td>
         <td>
           <nz-tag *ngFor="let permission of role.permissions">
             {{ permission }}
           </nz-tag>
         </td>
+        @if(role.userType === 'NORMAL'){
         <td class="flex gap-4">
           <button nz-button nzType="primary" (click)="showEditModal(role)">
             <span>Edit</span>
@@ -30,7 +32,9 @@
             <span>Delete</span>
           </button>
         </td>
+        }
       </tr>
+      }
     </tbody>
   </nz-table>
 
