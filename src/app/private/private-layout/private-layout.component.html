@@ -20,9 +20,31 @@
     </ul>
   </nz-sider>
   <nz-layout class="flex-grow">
-    <nz-content class="p-6">
-      <div class="bg-white rounded-lg shadow-sm p-6 min-h-[calc(100vh-96px)]">
-        <router-outlet></router-outlet>
+    <nz-content>
+      <div
+        class="bg-white px-6 py-4 flex items-center justify-between shadow-sm"
+      >
+        <h2 class="text-lg font-semibold m-0">{{ getCurrentPageTitle() }}</h2>
+        <div>
+          <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+            <nz-avatar nzIcon="user" class="cursor-pointer" />
+          </a>
+          <nz-dropdown-menu #menu="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item (click)="authStore.logout()">
+                <span nz-icon nzType="logout"></span>
+                Logout
+              </li>
+            </ul>
+          </nz-dropdown-menu>
+        </div>
+      </div>
+      <div class="p-6">
+        <div
+          class="bg-white rounded-lg shadow-sm p-6 min-h-[calc(100vh-160px)]"
+        >
+          <router-outlet></router-outlet>
+        </div>
       </div>
     </nz-content>
   </nz-layout>

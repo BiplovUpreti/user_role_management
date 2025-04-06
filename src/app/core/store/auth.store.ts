@@ -83,6 +83,7 @@ export class AuthStore extends signalStore(
       ),
       logout: () => {
         localStorage.removeItem('user');
+        router.navigate(['/login']);
         patchState(store, { user: null });
       },
     })
