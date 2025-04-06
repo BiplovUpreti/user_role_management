@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -22,5 +22,6 @@ import { SIDEBAR_ROUTES } from '../../core/constants/sidebar-routes';
   styleUrl: './private-layout.component.scss',
 })
 export class PrivateLayoutComponent {
+  router = inject(Router);
   readonly sidebarRoutes = SIDEBAR_ROUTES;
 }

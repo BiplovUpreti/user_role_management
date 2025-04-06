@@ -1,4 +1,4 @@
-<div class="min-h-screen flex items-center justify-center bg-gray-50">
+<div class="min-h-screen flex items-center justify-center bg-gray-200">
   <form
     [formGroup]="loginForm"
     (ngSubmit)="onSubmit()"
@@ -31,7 +31,8 @@
       nz-button
       nzType="primary"
       [disabled]="loginForm.invalid"
-      class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition duration-200 disabled:opacity-y disabled:cursor-not-allowed"
+      [nzLoading]="authStore.loading()"
+      class="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white fontdsa-semibold rounded-md transition duration-200 disabled:cursor-not-allowed"
     >
       Login
     </button>

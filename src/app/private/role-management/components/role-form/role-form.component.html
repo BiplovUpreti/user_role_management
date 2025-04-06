@@ -1,0 +1,81 @@
+<form [formGroup]="roleForm" (ngSubmit)="onSubmit()">
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Role Name</nz-form-label>
+    <nz-form-control [nzSpan]="14" nzErrorTip="Please input role name!">
+      <input nz-input formControlName="name" placeholder="Enter role name" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSpan]="6" nzRequired>Permissions</nz-form-label>
+    <nz-form-control
+      [nzSpan]="14"
+      nzErrorTip="Please add at least one permission!"
+      [nzHasFeedback]="true"
+    >
+      <div formArrayName="permissions">
+        @for (permission of permissions.controls; track i; let i = $index) {
+        <div class="mb-2">
+          <div [formGroupName]="i" class="flex items-center gap-2">
+            <nz-select
+              [formControlName]="'permission'"
+              nzPlaceHolder="Select permission"
+              class="w-full"
+              (nzFocus)="onPermissionFocus(i)"
+            >
+              @for (option of filteredPermissionOptions(i); track option.value)
+              {
+              <nz-option [nzLabel]="option.label" [nzValue]="option.value" />
+              }
+            </nz-select>
+            <button
+              nz-button
+              nzType="default"
+              type="button"
+              nzShape="circle"
+              nzDanger
+              (click)="removePermission(i)"
+              [disabled]="permissions.length <= 1"
+            >
+              <nz-icon nzType="delete" nzTheme="outline" />
+            </button>
+          </div>
+          @if (permission.get('permission')?.invalid &&
+          permission.get('permission')?.touched) {
+          <div class="text-red-500 text-xs mt-1">
+            Please select a permission
+          </div>
+          }
+        </div>
+        }
+      </div>
+      <div class="flex justify-end w-full mt-2">
+        <button
+          nz-button
+          nzType="dashed"
+          nzSize="small"
+          type="button"
+          (click)="addPermission()"
+          [disabled]="availablePermissions().length === 0"
+        >
+          <nz-icon nzType="plus" nzTheme="outline" />Add Permission
+        </button>
+      </div>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button
+        nz-button
+        nzType="primary"
+        class="w-full"
+        type="submit"
+        [disabled]="roleForm.invalid || isSubmitting"
+        [nzLoading]="isSubmitting"
+      >
+        {{ role?.id ? "Update" : "Save" }}
+      </button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

@@ -1,2 +1,10 @@
-@import "ng-zorro-antd/ng-zorro-antd.min.css";
-@import "tailwindcss";
+@use "ng-zorro-antd/ng-zorro-antd.min.css";
+@use "tailwindcss";
+
+.ant-btn-primary:disabled {
+  @apply bg-blue-600 border-gray-200 text-gray-400 cursor-not-allowed;
+}
+
+.ant-btn:disabled {
+  @apply bg-blue-100 border-gray-200 text-gray-400 cursor-not-allowed;
+}

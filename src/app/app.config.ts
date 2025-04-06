@@ -6,10 +6,14 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { routes } from './app.routes';
 import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideNzIcons } from 'ng-zorro-antd/icon';
+import { PlusOutline, DeleteOutline } from '@ant-design/icons-angular/icons';
+import { provideNzI18n, en_US } from 'ng-zorro-antd/i18n';
 
 const ngZorroConfig: NzConfig = {
   message: {
-    nzDuration: 5000,
+    nzDuration: 2000,
     nzMaxStack: 3,
     nzPauseOnHover: true,
     nzAnimate: true,
@@ -27,5 +31,8 @@ export const appConfig: ApplicationConfig = {
     provideEffects(),
     provideStoreDevtools({ maxAge: 25 }),
     provideNzConfig(ngZorroConfig),
+    provideAnimations(),
+    provideNzIcons([PlusOutline, DeleteOutline]),
+    provideNzI18n(en_US),
   ],
 };

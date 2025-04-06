@@ -7,7 +7,12 @@
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" class="mt-2">
       @for (item of sidebarRoutes; track item.path) {
-      <li nz-menu-item [routerLink]="item.path" class="flex items-center gap-2">
+      <li
+        nz-menu-item
+        [routerLink]="item.path"
+        class="flex items-center gap-2"
+        [nzSelected]="router.isActive(item.path, false)"
+      >
         <span>{{ item.title }}</span>
       </li>
       }
