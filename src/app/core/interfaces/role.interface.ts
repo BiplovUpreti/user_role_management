@@ -1,6 +1,7 @@
+export type UserType = 'ADMIN' | 'NORMAL';
 export interface Role {
   id: number;
   name: string;
-  userType: 'ADMIN' | 'NORMAL';
+  userType: UserType;
   permissions: string[];
 }

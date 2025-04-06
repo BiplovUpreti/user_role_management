@@ -21,22 +21,21 @@ export class UserService {
   }
 
   updateUser(user: Partial<User>): Observable<User> {
-    const { username, ...updateData } = user;
-    return this.http.put<User>(`${this.apiUrl}/${user.id}`, updateData);
+    return this.http.put<User>(`${this.apiUrl}/${user.id}`, user);
   }
 
   deleteUser(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  checkUsernameExists(username: string): Observable<boolean> {
-    return this.getUsers().pipe(
-      map((users) =>
-        users.some(
-          (user) => user.username.toLowerCase() === username.toLowerCase()
+  checkUsernameExists(username: string, id?: number): Observable<boolean> {
+    return this.http
+      .get<User[]>(`${this.apiUrl}?username=${username}`)
+      .pipe(
+        map((users) =>
+          users.some((user) => user.username === username && user.id !== id)
         )
-      )
-    );
+      );
   }
 
   assignRole(userId: number, roleId: number): Observable<User> {

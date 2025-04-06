@@ -1,7 +1,7 @@
 {
   "roles": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Super Admin",
       "userType": "ADMIN",
       "permissions": [
@@ -12,10 +12,11 @@
       ]
     },
     {
-      "id": 2,
-      "name": "EMP",
+      "id": "3",
+      "name": "Test Role",
       "permissions": [
         "CREATE",
+        "UPDATE",
         "READ"
       ],
       "userType": "NORMAL"
@@ -23,11 +24,18 @@
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "username": "admin",
       "password": "admin123",
       "fullName": "Super Admin",
-      "roleId": 1
+      "roleId": "1"
+    },
+    {
+      "id": "2",
+      "username": "test",
+      "password": "admin123",
+      "fullName": "Test",
+      "roleId": "3"
     }
   ]
 }

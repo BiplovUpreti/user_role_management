@@ -1,46 +1,58 @@
 <div>
-  <div class="flex justify-between mb-4">
-    <h2>Role Management</h2>
+  <div class="flex justify-end mb-4">
     <button nz-button nzType="primary" (click)="showCreateModal()">
-      <span nz-icon nzType="plus"></span>Create Role
+      Create Role
     </button>
   </div>
 
-  <nz-table #roleTable [nzData]="roleStore.roles()">
-    <thead>
-      <tr>
-        <th>Role Name</th>
-        <th>Permissions</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for (role of roleTable.data; track role.id) {
-      <tr>
-        <td>{{ role.name }}</td>
-        <td>
-          @for (permission of role.permissions; track permission) {
-          <nz-tag>
-            {{ permission }}
-          </nz-tag>
-          }
-        </td>
-        @if(role.userType === 'NORMAL'){
-        <td class="flex gap-4">
-          <button nz-button nzType="primary" (click)="showEditModal(role)">
-            <span>Edit</span>
-          </button>
-          <button nz-button nzType="default" (click)="deleteRole(role)">
-            <span>Delete</span>
-          </button>
-        </td>
+  <div class="overflow-x-auto">
+    <nz-table #roleTable [nzData]="roleStore.roles()">
+      <thead>
+        <tr>
+          <th>Role Name</th>
+          <th>Permissions</th>
+          <th class="flex justify-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (role of roleTable.data; track role.id) {
+        <tr>
+          <td>{{ role.name }}</td>
+          <td>
+            @for (permission of role.permissions; track permission) {
+            <nz-tag>
+              {{ permission }}
+            </nz-tag>
+            }
+          </td>
+          <td class="flex gap-2 justify-end">
+            @if(role.userType === 'NORMAL'){
+            <button nz-button nzType="primary" (click)="showEditModal(role)">
+              <span nz-icon nzType="edit"></span>
+            </button>
+            <button
+              nz-button
+              nzType="default"
+              nzDanger
+              (click)="deleteRole(role)"
+            >
+              <span nz-icon nzType="delete"></span>
+            </button>
+            }@else{
+            <div class="py-3"></div>
+            }
+          </td>
+        </tr>
         }
-      </tr>
-      }
-    </tbody>
-  </nz-table>
+      </tbody>
+    </nz-table>
+  </div>
 
-  <nz-spin *ngIf="roleStore.loading()"></nz-spin>
+  @if(roleStore.loading()) {
+  <div class="flex justify-center items-center mt-4">
+    <nz-spin></nz-spin>
+  </div>
+  }
 </div>
 
 <nz-modal

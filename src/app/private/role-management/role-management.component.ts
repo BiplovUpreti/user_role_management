@@ -6,6 +6,7 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzIconModule } from 'ng-zorro-antd/icon';
 import { RoleFormComponent } from './components/role-form/role-form.component';
 import { RoleStore } from '../../core/store/role.store';
 import { Role } from '../../core/interfaces/role.interface';
@@ -21,6 +22,7 @@ import { Role } from '../../core/interfaces/role.interface';
     NzTagModule,
     NzSpinModule,
     RoleFormComponent,
+    NzIconModule,
   ],
   templateUrl: './role-management.component.html',
   styleUrls: ['./role-management.component.scss'],

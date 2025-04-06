@@ -32,16 +32,16 @@
           <nz-dropdown-menu #menu="nzDropdownMenu">
             <ul nz-menu>
               <li nz-menu-item (click)="authStore.logout()">
-                <span nz-icon nzType="logout"></span>
+                <span nz-icon nzType="logout" class="mr-2"></span>
                 Logout
               </li>
             </ul>
           </nz-dropdown-menu>
         </div>
       </div>
-      <div class="p-6">
+      <div class="p-4">
         <div
-          class="bg-white rounded-lg shadow-sm p-6 min-h-[calc(100vh-160px)]"
+          class="bg-white rounded-lg shadow-sm p-2 min-h-[calc(100vh-160px)]"
         >
           <router-outlet></router-outlet>
         </div>

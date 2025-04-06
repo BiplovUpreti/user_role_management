@@ -11,7 +11,7 @@ import { pipe, switchMap, tap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
 import { RoleService } from '../services/role.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
-import { Role } from '../interfaces/role.interface';
+import { Role, UserType } from '../interfaces/role.interface';
 
 interface RoleState {
   roles: Role[];
@@ -61,7 +61,11 @@ export class RoleStore extends signalStore(
               store.roles().length > 0
                 ? Math.max(...store.roles().map((r) => r.id)) + 1
                 : 1;
-            const newRole: Role = { ...role, id: newId, userType: 'NORMAL' };
+            const newRole = {
+              ...role,
+              id: newId?.toString(),
+              userType: 'NORMAL' as UserType,
+            };
 
             return roleService.createRole(newRole).pipe(
               tapResponse({
