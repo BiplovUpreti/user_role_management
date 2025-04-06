@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../interfaces/user.interface';
+import { RoleService } from './role.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,16 @@ import { User } from '../interfaces/user.interface';
 export class UserService {
   private apiUrl = 'http://localhost:3000/users';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private roleService: RoleService) {}
+
+  getUserWithRole(user: User) {
+    return this.roleService.getRoles().pipe(
+      map((roles) => {
+        const role = roles.find((r) => r.id === user.roleId);
+        return { ...user, role };
+      })
+    );
+  }
 
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>(this.apiUrl);

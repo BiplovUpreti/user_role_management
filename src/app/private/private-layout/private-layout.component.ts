@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
-import { SIDEBAR_ROUTES } from '../../core/constants/sidebar-routes';
+import { getFilteredSidebarRoutes } from '../../core/constants/sidebar-routes';
 import { AuthStore } from '../../core/store/auth.store';
 
 @Component({
@@ -30,7 +30,11 @@ import { AuthStore } from '../../core/store/auth.store';
 export class PrivateLayoutComponent {
   router = inject(Router);
   authStore = inject(AuthStore);
-  readonly sidebarRoutes = SIDEBAR_ROUTES;
+
+  get sidebarRoutes() {
+    const user = this.authStore.getCurrentUser();
+    return getFilteredSidebarRoutes(user);
+  }
 
   getCurrentPageTitle(): string {
     const currentRoute = this.sidebarRoutes.find((route) =>

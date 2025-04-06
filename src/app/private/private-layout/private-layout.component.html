@@ -25,7 +25,11 @@
         class="bg-white px-6 py-4 flex items-center justify-between shadow-sm"
       >
         <h2 class="text-lg font-semibold m-0">{{ getCurrentPageTitle() }}</h2>
-        <div>
+        <div class="flex items-center">
+          <span class="text-md text-gray-600 font-semibold mr-2">
+            {{ authStore.getCurrentUser().fullName }}
+          </span>
+
           <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
             <nz-avatar nzIcon="user" class="cursor-pointer" />
           </a>
