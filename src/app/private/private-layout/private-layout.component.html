@@ -13,6 +13,7 @@
         class="flex items-center gap-2"
         [nzSelected]="router.isActive(item.path, false)"
       >
+        <nz-icon [nzType]="item.icon" />
         <span>{{ item.title }}</span>
       </li>
       }

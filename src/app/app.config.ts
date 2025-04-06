@@ -10,6 +10,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideNzIcons } from 'ng-zorro-antd/icon';
 import { PlusOutline, DeleteOutline } from '@ant-design/icons-angular/icons';
 import { provideNzI18n, en_US } from 'ng-zorro-antd/i18n';
+import { SIDEBAR_ICONS } from './core/constants/sidebar-routes';
 
 const ngZorroConfig: NzConfig = {
   message: {
@@ -32,7 +33,7 @@ export const appConfig: ApplicationConfig = {
     provideStoreDevtools({ maxAge: 25 }),
     provideNzConfig(ngZorroConfig),
     provideAnimations(),
-    provideNzIcons([PlusOutline, DeleteOutline]),
+    provideNzIcons([...SIDEBAR_ICONS, PlusOutline, DeleteOutline]),
     provideNzI18n(en_US),
   ],
 };

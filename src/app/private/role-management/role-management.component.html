@@ -19,9 +19,11 @@
       <tr>
         <td>{{ role.name }}</td>
         <td>
-          <nz-tag *ngFor="let permission of role.permissions">
+          @for (permission of role.permissions; track permission) {
+          <nz-tag>
             {{ permission }}
           </nz-tag>
+          }
         </td>
         @if(role.userType === 'NORMAL'){
         <td class="flex gap-4">
