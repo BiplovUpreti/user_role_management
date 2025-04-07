@@ -17,7 +17,8 @@
       "permissions": [
         "UPDATE",
         "READ"
-      ]
+      ],
+      "userType": "NORMAL"
     }
   ],
   "users": [

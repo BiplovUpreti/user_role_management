@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 import { RoleService } from '../../../../core/services/role.service';
 import { Role } from '../../../../core/interfaces/role.interface';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { Permission } from '../../../../core/enums/permission.enum';
 
 @Component({
   selector: 'app-role-form',
@@ -33,10 +34,10 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 })
 export class RoleFormComponent {
   allPermissionOptions = [
-    { label: 'Create', value: 'CREATE' },
-    { label: 'Read', value: 'READ' },
-    { label: 'Update', value: 'UPDATE' },
-    { label: 'Delete', value: 'DELETE' },
+    { label: 'Create', value: Permission.CREATE },
+    { label: 'Read', value: Permission.READ },
+    { label: 'Update', value: Permission.UPDATE },
+    { label: 'Delete', value: Permission.DELETE },
   ];
 
   @Input() role: Role | null = null;

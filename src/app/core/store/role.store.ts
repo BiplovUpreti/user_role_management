@@ -90,23 +90,25 @@ export class RoleStore extends signalStore(
         pipe(
           tap(() => patchState(store, { loading: true, error: null })),
           switchMap((role) =>
-            roleService.updateRole(role).pipe(
-              tapResponse({
-                next: (updatedRole) => {
-                  patchState(store, (state) => ({
-                    roles: state.roles.map((r) =>
-                      r.id === updatedRole.id ? updatedRole : r
-                    ),
-                    loading: false,
-                  }));
-                  message.success('Role updated successfully');
-                },
-                error: (error: Error) => {
-                  patchState(store, { error: error.message, loading: false });
-                  message.error('Failed to update role');
-                },
-              })
-            )
+            roleService
+              .updateRole({ ...role, userType: 'NORMAL' as UserType })
+              .pipe(
+                tapResponse({
+                  next: (updatedRole) => {
+                    patchState(store, (state) => ({
+                      roles: state.roles.map((r) =>
+                        r.id === updatedRole.id ? updatedRole : r
+                      ),
+                      loading: false,
+                    }));
+                    message.success('Role updated successfully');
+                  },
+                  error: (error: Error) => {
+                    patchState(store, { error: error.message, loading: false });
+                    message.error('Failed to update role');
+                  },
+                })
+              )
           )
         )
       ),

@@ -11,6 +11,7 @@ import { UserStore } from '../../core/store/user.store';
 import { User } from '../../core/interfaces/user.interface';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { AuthStore } from '../../core/store/auth.store';
+import { Permission } from '../../core/enums/permission.enum';
 
 @Component({
   selector: 'app-user-management',
@@ -34,6 +35,7 @@ export class UserManagementComponent implements OnInit {
   isDeleteModalVisible = false;
   selectedUser: User | null = null;
   userToDelete: User | null = null;
+  Permission = Permission;
 
   constructor(public userStore: UserStore, public authStore: AuthStore) {}
 

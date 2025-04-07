@@ -1,6 +1,6 @@
 <div>
   <div class="flex justify-end mb-4">
-    @if(authStore.hasPermission('CREATE')) {
+    @if(authStore.hasPermission(Permission.CREATE)) {
     <button
       nz-button
       nzType="primary"
@@ -35,15 +35,15 @@
             }
           </td>
           <td class="flex justify-end gap-2">
-            @if(authStore.hasPermission('READ')) {
+            @if(authStore.hasPermission(Permission.READ)) {
             <button nz-button nzType="primary" (click)="showUserDetail(user)">
               <span nz-icon nzType="eye"></span>
             </button>
-            } @if(authStore.hasPermission('UPDATE')) {
+            } @if(authStore.hasPermission(Permission.UPDATE)) {
             <button nz-button nzType="default" (click)="showEditModal(user)">
               <span nz-icon nzType="edit"></span>
             </button>
-            } @if(authStore.hasPermission('DELETE') && user.role?.userType !==
+            } @if(authStore.hasPermission(Permission.DELETE) && user.role?.userType !==
             'ADMIN') {
             <button
               nz-button
