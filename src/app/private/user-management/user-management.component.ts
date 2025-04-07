@@ -4,13 +4,13 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzTagModule } from 'ng-zorro-antd/tag';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { UserStore } from '../../core/store/user.store';
 import { User } from '../../core/interfaces/user.interface';
 import { UserFormComponent } from './components/user-form/user-form.component';
+import { AuthStore } from '../../core/store/auth.store';
 
 @Component({
   selector: 'app-user-management',
@@ -24,7 +24,7 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     NzSpinModule,
     NzDrawerModule,
     NzIconModule,
-    UserFormComponent
+    UserFormComponent,
   ],
   templateUrl: './user-management.component.html',
 })
@@ -35,7 +35,7 @@ export class UserManagementComponent implements OnInit {
   selectedUser: User | null = null;
   userToDelete: User | null = null;
 
-  constructor(public userStore: UserStore, private message: NzMessageService) {}
+  constructor(public userStore: UserStore, public authStore: AuthStore) {}
 
   ngOnInit(): void {
     this.userStore.loadUsers();

@@ -1,59 +1,62 @@
-# UserRoleManagement
+# User Role Management System
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.6.
+A comprehensive user and role management application built with Angular and NgRx.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- User management (Create, Read, Update, Delete)
+- Role management with permissions
+- Authentication and authorization
+- Responsive UI built with Ant-Design/NG-ZORRO components
 
-```bash
-ng serve
-```
+## Prerequisites
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Node.js (v18 or later)
+- Angular CLI (v19 or later)
+- npm (v9 or later)
 
-## Code scaffolding
+## Installation
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+1. Clone the repository:
 
 ```bash
-ng generate --help
+git clone https://github.com/your-repo/user-role-management.git
 ```
 
-## Building
+## Configuration
 
-To build the project run:
+1. The mock database is stored in db.json at the root of the project. This file contains:
+
+   - Users data
+   - Roles data
+   - Permissions data
+
+2. Start the JSON Server (runs on port 3000 by default):
 
 ```bash
-ng build
+npm run server
+# or manually:
+json-server --watch db.json --port 3000
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Development
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+To start both the Angular dev server and JSON Server concurrently:
 
 ```bash
-ng test
+npm run start:dev
 ```
 
-## Running end-to-end tests
+This will:
 
-For end-to-end (e2e) testing, run:
+- Start Angular on http://localhost:4200
+- Start JSON Server on http://localhost:3000
 
-```bash
-ng e2e
-```
+## API Endpoints
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+The following endpoints are available via JSON Server:
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- GET/POST/PUT/DELETE /users
+- GET/POST/PUT/DELETE /roles
+- GET /permissions
+  You can directly access and modify the data through these endpoints or by editing the db.json file.

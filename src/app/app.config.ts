@@ -4,7 +4,6 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { routes } from './app.routes';
 import { NzConfig, provideNzConfig } from 'ng-zorro-antd/core/config';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideNzIcons } from 'ng-zorro-antd/icon';
@@ -15,7 +14,9 @@ import {
   EyeInvisibleOutline,
 } from '@ant-design/icons-angular/icons';
 import { provideNzI18n, en_US } from 'ng-zorro-antd/i18n';
+
 import { SIDEBAR_ICONS } from './core/constants/sidebar-routes';
+import { routes } from './app.routes';
 
 const ngZorroConfig: NzConfig = {
   message: {

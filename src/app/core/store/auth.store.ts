@@ -39,14 +39,22 @@ export class AuthStore extends signalStore(
       message = inject(NzMessageService),
       userService = inject(UserService)
     ) => {
+      const getCurrentUser = (): User => {
+        const user = localStorage.getItem('user');
+        return user ? JSON.parse(user) : null;
+      };
       return {
         isAuthenticated: () => {
           const user = localStorage.getItem('user');
           return !!user;
         },
-        getCurrentUser: (): User => {
-          const user = localStorage.getItem('user');
-          return user ? JSON.parse(user) : null;
+        getCurrentUser,
+        hasPermission: (permission: string): boolean => {
+          getCurrentUser();
+          const user = getCurrentUser();
+
+          if (!user || !user.role || !user.role.permissions) return false;
+          return user.role.permissions.includes(permission);
         },
         login: rxMethod<{ username: string; password: string }>(
           pipe(
@@ -59,15 +67,20 @@ export class AuthStore extends signalStore(
                   ) as User | undefined;
 
                   if (fetchedUser) {
-                    userService.getUserWithRole(fetchedUser).subscribe(userRoleData => {
-                      localStorage.setItem('user', JSON.stringify(userRoleData));
-                      router.navigate(['/users']);
-                      message.success('Login successful!');
-                      patchState(store, {
-                        user: userRoleData,
-                        loading: false,
+                    userService
+                      .getUserWithRole(fetchedUser)
+                      .subscribe((userRoleData) => {
+                        localStorage.setItem(
+                          'user',
+                          JSON.stringify(userRoleData)
+                        );
+                        router.navigate(['/users']);
+                        message.success('Login successful!');
+                        patchState(store, {
+                          user: userRoleData,
+                          loading: false,
+                        });
                       });
-                    });
                     return { success: true, token: fetchedUser };
                   } else {
                     message.error('Invalid credentials!');

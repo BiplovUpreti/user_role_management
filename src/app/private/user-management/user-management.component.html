@@ -1,5 +1,6 @@
 <div>
   <div class="flex justify-end mb-4">
+    @if(authStore.hasPermission('CREATE')) {
     <button
       nz-button
       nzType="primary"
@@ -8,6 +9,7 @@
     >
       Create User
     </button>
+    }
   </div>
 
   <div class="overflow-x-auto">
@@ -33,13 +35,16 @@
             }
           </td>
           <td class="flex justify-end gap-2">
+            @if(authStore.hasPermission('READ')) {
             <button nz-button nzType="primary" (click)="showUserDetail(user)">
               <span nz-icon nzType="eye"></span>
             </button>
+            } @if(authStore.hasPermission('UPDATE')) {
             <button nz-button nzType="default" (click)="showEditModal(user)">
               <span nz-icon nzType="edit"></span>
             </button>
-            @if(user.role?.userType !== 'ADMIN'){
+            } @if(authStore.hasPermission('DELETE') && user.role?.userType !==
+            'ADMIN') {
             <button
               nz-button
               nzType="default"

@@ -2,11 +2,6 @@ import { Routes } from '@angular/router';
 import { authGuard } from '../core/guards/auth.guard';
 import { permissionGuard } from '../core/guards/permission.guard';
 
-const NotFoundComponent = () =>
-  import('../shared/components/not-found/not-found.component').then(
-    (m) => m.NotFoundComponent
-  );
-
 const PrivateLayoutComponent = () =>
   import('./private-layout/private-layout.component').then(
     (m) => m.PrivateLayoutComponent
@@ -34,10 +29,6 @@ export const privateRoutes: Routes = [
         path: 'roles',
         loadComponent: RoleManagementComponent,
         canActivate: [permissionGuard],
-      },
-      {
-        path: '**',
-        loadComponent: NotFoundComponent,
       },
     ],
   },

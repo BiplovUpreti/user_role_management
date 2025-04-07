@@ -68,6 +68,7 @@ export class UserFormComponent {
         username: this.user.username,
         fullName: this.user.fullName,
         roleId: this.user.roleId,
+        password: this.user.password,
       });
     }
   }
