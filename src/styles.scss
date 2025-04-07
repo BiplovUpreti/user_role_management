@@ -2,9 +2,15 @@
 @use "tailwindcss";
 
 .ant-btn-primary:disabled {
-  @apply bg-blue-600 border-gray-200 text-gray-400 cursor-not-allowed;
+  background-color: #2563eb;
+  border-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
 }
 
 .ant-btn:disabled {
-  @apply bg-blue-100 border-gray-200 text-gray-400 cursor-not-allowed;
+  background-color: #dbeafe;
+  border-color: #e5e7eb;
+  color: #9ca3af;
+  cursor: not-allowed;
 }
